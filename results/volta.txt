@@ -1,0 +1,15 @@
+n       42, reps =     1000, bytes         1008, bandwidth =   382.274627
+n       85, reps =     1000, bytes         2040, bandwidth =   708.019959
+n      170, reps =     1000, bytes         4080, bandwidth =  1349.049462
+n      341, reps =     1000, bytes         8184, bandwidth =  2410.721250
+n      682, reps =     1000, bytes        16368, bandwidth =  3809.580108
+n     1365, reps =     1000, bytes        32760, bandwidth =  3945.215172
+n     2730, reps =     1000, bytes        65520, bandwidth =  5026.924669
+n     5461, reps =     1000, bytes       131064, bandwidth =  3513.635838
+n    10922, reps =     1000, bytes       262128, bandwidth =   959.153290
+n    21845, reps =     1000, bytes       524280, bandwidth =   910.627304
+n    43690, reps =     1000, bytes      1048560, bandwidth =   880.239559
+n    87381, reps =     1000, bytes      2097144, bandwidth =   847.284649
+n   174762, reps =     1000, bytes      4194288, bandwidth =   816.886488
+n   349525, reps =     1000, bytes      8388600, bandwidth =   780.745173
+n   699050, reps =     1000, bytes     16777200, bandwidth =   763.159114
