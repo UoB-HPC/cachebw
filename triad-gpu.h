@@ -44,8 +44,8 @@ double cache_triad(size_t n, size_t nreps)
   cudaDeviceProp prop;
   cudaGetDeviceProperties(&prop, 0);
 
-  int num_blks = prop.multiProcessorCount * 4;
-  int blk_sz = 128;
+  int num_blks = prop.multiProcessorCount * 1;
+  int blk_sz = 1024;
 
   // if we don't have enough GPU memory, don't run
   if (num_blks * n * 3 * sizeof(double) > prop.totalGlobalMem) {
