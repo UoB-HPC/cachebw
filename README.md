@@ -1,7 +1,7 @@
 CacheBW
 =======
 
-Author: Patrick Atkinson
+Author: Patrick Atkinson (p.atkinson@bristol.ac.uk)
 
 This benchmark is primarily designed to measure the memory-bandwidth of different levels of the memory hierarchy in CPU and GPU architectures. It works by running a STREAM Triad kernel many times on each thread (CPU) or each SM (GPU), and calculates the aggregate memory-bandwidth. This methodology was inspired by the work done in:
 
