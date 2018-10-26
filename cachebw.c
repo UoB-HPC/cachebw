@@ -8,7 +8,7 @@ int main(int argc, char** argv)
   if (argc < 3) {
     fprintf(
         stderr,
-        "error: need 2 input args; (1) Size of date per thread(CPU)/SM(GPU) in bytes, (2) Number of reps\n");
+        "error: need 2 input args; (1) Size of date per thread(CPU)/SM(GPU) in KiB, (2) Number of reps\n");
     return 1;
   }
 
