@@ -1,7 +1,6 @@
 #pragma once
 
 #include <omp.h>
-#include <immintrin.h>
 
 #ifdef __INTEL_COMPILER
 #define DECLARE_ALIGNED(p, a) __assume_aligned(p, a)
@@ -19,9 +18,9 @@ double cache_triad(size_t n, size_t nreps)
   double tot_mem_bw = 0.0;
 #pragma omp parallel reduction(+ : tot_mem_bw)
   {
-    double* restrict a = (double*)_mm_malloc(sizeof(double) * n, 64);
-    double* restrict b = (double*)_mm_malloc(sizeof(double) * n, 64);
-    double* restrict c = (double*)_mm_malloc(sizeof(double) * n, 64);
+    double* restrict a = (double*)aligned_alloc(64, sizeof(double) * n);
+    double* restrict b = (double*)aligned_alloc(64, sizeof(double) * n);
+    double* restrict c = (double*)aligned_alloc(64, sizeof(double) * n);
 
     DECLARE_ALIGNED(a, 64);
     DECLARE_ALIGNED(b, 64);
@@ -46,9 +45,9 @@ double cache_triad(size_t n, size_t nreps)
     double mem_bw = (4.0 * sizeof(double) * n) / ((t1 - t0) / nreps) / 1e9;
     tot_mem_bw += mem_bw;
 
-    _mm_free(a);
-    _mm_free(b);
-    _mm_free(c);
+    free(a);
+    free(b);
+    free(c);
   }
   return tot_mem_bw;
 }
