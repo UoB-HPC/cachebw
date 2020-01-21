@@ -1,7 +1,7 @@
 #pragma once
 
 #include <omp.h>
-#include <immintrin.h>
+//#include <immintrin.h>
 
 #ifdef __INTEL_COMPILER
 #define DECLARE_ALIGNED(p, a) __assume_aligned(p, a)
@@ -10,6 +10,13 @@
 #else
 // Ignore if we're using an unsupported compiler
 #define DECLARE_ALIGNED(p, a)
+#endif
+
+#ifndef __INTEL_COMPILER
+#if __STDC_VERSION__ == 201112L
+void * _mm_malloc(size_t s, size_t n) { return aligned_alloc(n, s); }
+void _mm_free(void* p) { free(p); }
+#endif
 #endif
 
 double cache_triad(size_t n, size_t nreps)
