@@ -35,25 +35,36 @@ The first argument is the size (in KiB) of the data that will be read/written pe
 
 The second argument is the number of times the triad kernel is repeated, ensuring accurate results. 
 
-**Running the benchmark a single time is rarely useful.** It is generally more interesting to run it with increasingly large data sizes, so one can view the effect of the data slipping out of each level of cache. An example of this is provided in the script 'test.sh', i.e.:
+### Benchmarking
+
+**Running the benchmark a single time is rarely useful.** It is generally more interesting to run it with increasingly large data sizes, so one can view the effect of the data slipping out of each level of cache. An example of this is provided in the script `benchmark.sh`:
 
 ```
-./test.sh
+./benchmark.sh [-n MAXN] [-r REPS]
 ```
 
-will print out the memory-bandwidths of each of the levels of the memory-hierarchy.
+The script will print out the achieved memory bandwidths at each size.
+If run for enough iternation, and with a big-enough maximum size, you should be able to identify peaks around the levels of your memory hierarchy.
+
+Use `-n` to control the maximum size. 
+A value of `11` (the default) is suitable to spot the three levels of cache in Skylake/Cascade Lake: L1 at 32 KB, L2 at 1024 KB, and a good estimate of L3 at 2048 KB.
+Increasing `n` even further should show results close to the DRAM bandwidth.
+
+Use `-r` to control the number of iterations run.
+As a rule of thumb, run the script several times with the same number of iterations and increase it until the bandwidth result at your target level stops increasing and there is little variance (&lt;5%) between runs.
+
 
 Samples Results
 ---------------
 
-Sample results are provided in the results directory:
+Sample results are provided in the `results` directory:
 
-| File        | Hardware                                 |
-|-------------|------------------------------------------|
-|skylake.txt  | 2x Intel Platinum 8176 (2x28 cores)      |
-|broadwell.txt| 2x Intel Xeon E5-2699v4 (2x22 cores)     |
-|volta.txt    | NVIDIA Tesla V100 16GB                   |
-|pascal.txt   | NVIDIA Tesla P100 16GB                   |
+| File                | Hardware                                      |
+|---------------------|-----------------------------------------------|
+|skylake-8176-2s.txt  | Dual-Socket Intel Platinum 8176 (2x28 cores)  |
+|broadwell-2699-2s.txt| Dual-Socket Intel Xeon E5-2699v4 (2x22 cores) |
+|volta.txt            | NVIDIA Tesla V100 16GB                        |
+|pascal.txt           | NVIDIA Tesla P100 16GB                        |
 
 Notes
 ----------------
