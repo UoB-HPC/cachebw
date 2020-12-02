@@ -59,12 +59,15 @@ Samples Results
 
 Sample results are provided in the `results` directory:
 
-| File                | Hardware                                      |
-|---------------------|-----------------------------------------------|
-|skylake-8176-2s.txt  | Dual-Socket Intel Platinum 8176 (2x28 cores)  |
-|broadwell-2699-2s.txt| Dual-Socket Intel Xeon E5-2699v4 (2x22 cores) |
-|volta.txt            | NVIDIA Tesla V100 16GB                        |
-|pascal.txt           | NVIDIA Tesla P100 16GB                        |
+| File                     | Hardware                                      |
+|--------------------------|-----------------------------------------------|
+| broadwell-2699-2s.txt    | Dual-Socket Intel Xeon E5-2699v4 (2x22 cores) |
+| skylake-8176-2s.txt      | Dual-Socket Intel Platinum 8176 (2x28 cores)  |
+| cascadelake-6230-2s.txt  | Dual-Socket Intel Gold 6230 (2x20 cores)      |
+| rome-7742-2s.txt         | Dual-Socket AMD EPYC 7742 (2x64 cores)        |
+| tx2-2s.txt               | Dual-Socket Marvell ThunderX2 (2x32 cores)    |
+| volta.txt                | NVIDIA Tesla V100 16GB                        |
+| pascal.txt               | NVIDIA Tesla P100 16GB                        |
 
 Notes
 ----------------
