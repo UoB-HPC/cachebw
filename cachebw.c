@@ -14,12 +14,19 @@ int main(int argc, char **argv) {
   int kbytes = atoi(argv[1]);
   int nreps = atoi(argv[2]);
   int runs = atoi(argv[3]);
+  #ifdef PMU 
   RUN_PERF(
-  size_t n = ((size_t)kbytes * 1024) / (3 * sizeof(double));
-  double tot_mem_bw = cache_triad(n, nreps);
-  // printf("[SSTSimEng:SSTDebug] OutputLine-n %zu, reps = %d, bytes %zu, bandwidth = %f\n", n, nreps,
-  //        n * 3 * sizeof(double), tot_mem_bw);
-  );
+    size_t n = ((size_t)kbytes * 1024) / (3 * sizeof(double));
+    double tot_mem_bw = cache_triad(n, nreps);
+    printf("n %zu, reps = %d, bytes %zu, bandwidth = %f\n", n, nreps,
+           n * 3 * sizeof(double), tot_mem_bw);
+  )
+  #else
+    size_t n = ((size_t)kbytes * 1024) / (3 * sizeof(double));
+    double tot_mem_bw = cache_triad(n, nreps);
+    printf("n %zu, reps = %d, bytes %zu, bandwidth = %f\n", n, nreps,
+           n * 3 * sizeof(double), tot_mem_bw);
+  #endif
   return 0;
 }
 
