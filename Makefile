@@ -12,7 +12,7 @@ CFLAGS_GNU=-std=c11 -march=$(ARCH) -fopenmp
 CFLAGS_NVCC=-arch=$(ARCH) -DGPU -x cu -DSHMEM=$(SHMEM)
 
 GNU_STATIC_FLAGS=-std=c11 -O3 -fPIC -DPMU -I/home/br-rmuneeb/pmu/include -I/opt/gcc/9.3.0/snos/lib/gcc/aarch64-unknown-linux-gnu/9.3.0/include -L/home/br-rmuneeb/pmu/install/lib/ -static-libgcc -static-libstdc++
-GNU_STATIC_FLAGS_NORMAL=-std=c11 -O3 -fPIC -I/home/br-rmuneeb/pmu/include -I/opt/gcc/9.3.0/snos/lib/gcc/aarch64-unknown-linux-gnu/9.3.0/include -L/home/br-rmuneeb/pmu/install/lib/ -static-libgcc -static-libstdc++
+GNU_STATIC_FLAGS_NORMAL=-std=c11 -O3 -fPIC -I/home/br-rmuneeb/pmu/include -I/opt/gcc/9.3.0/snos/lib/gcc/aarch64-unknown-linux-gnu/9.3.0/include -static -static-libgcc -static-libstdc++
 STATIC_OMP=/opt/gcc/9.3.0/snos/lib64/libgomp.a
 CFLAGS = -O3 $(CFLAGS_$(COMPILER))
 
