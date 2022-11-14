@@ -13,7 +13,6 @@ int main(int argc, char **argv) {
   };
   int kbytes = atoi(argv[1]);
   int nreps = atoi(argv[2]);
-  int runs = atoi(argv[3]);
   #ifdef PMU 
   RUN_PERF(
     size_t n = ((size_t)kbytes * 1024) / (3 * sizeof(double));

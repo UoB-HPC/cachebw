@@ -18,21 +18,20 @@ CFLAGS = -O3 $(CFLAGS_$(COMPILER))
 
 HEADERS = $(wildcard *.h)
 
-default: cbw
+all: cbw_static_pmu cbw_static_sve_pmu cbw_static cbw_static_sve
 
-cbw: cachebw.c $(HEADERS)
-	$(CC) $(CFLAGS) cachebw.c -o cachebw
+default: cbw_static
 
-cbw_static_simeng_pmu: cachebw.c $(HEADERS)
+cbw_static_pmu: cachebw.c $(HEADERS)
 	gcc $(GNU_STATIC_FLAGS) -march=armv8.4-a cachebw.c $(STATIC_OMP) -o cachebw_static_pmu -lpmu
 
-cbw_static_sve_simeng_pmu: cachebw.c $(HEADERS)
+cbw_static_sve_pmu: cachebw.c $(HEADERS)
 	gcc $(GNU_STATIC_FLAGS) -march=armv8.4-a+sve cachebw.c $(STATIC_OMP) -o cachebw_static_sve_pmu -lpmu
 
-cbw_static_simeng: cachebw.c $(HEADERS)
+cbw_static: cachebw.c $(HEADERS)
 	gcc $(GNU_STATIC_FLAGS_NORMAL) -march=armv8.4-a cachebw.c $(STATIC_OMP) -o cachebw_static
 
-cbw_static_sve_simeng: cachebw.c $(HEADERS)
+cbw_static_sve: cachebw.c $(HEADERS)
 	gcc $(GNU_STATIC_FLAGS_NORMAL) -march=armv8.4-a cachebw.c $(STATIC_OMP) -o cachebw_static_sve
 
 clean:
