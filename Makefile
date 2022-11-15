@@ -32,7 +32,7 @@ cbw_static: cachebw.c $(HEADERS)
 	gcc $(GNU_STATIC_FLAGS_NORMAL) -march=armv8.4-a cachebw.c $(STATIC_OMP) -o cachebw_static
 
 cbw_static_sve: cachebw.c $(HEADERS)
-	gcc $(GNU_STATIC_FLAGS_NORMAL) -march=armv8.4-a cachebw.c $(STATIC_OMP) -o cachebw_static_sve
+	gcc $(GNU_STATIC_FLAGS_NORMAL) -march=armv8.4-a+sve cachebw.c $(STATIC_OMP) -o cachebw_static_sve
 
 clean:
 	-rm -rf cachebw
