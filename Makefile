@@ -1,13 +1,13 @@
-COMPILER=INTEL
 MODEL=USM
-ARCH=sapphirerapids
-SHMEM=0
+OPTS=-Xlinker -z,noexecstack
 
 COMPILER_GNU=gcc
-COMPILER_NVCC=nvcc
+COMPILER_NVIDIA=nvc++
+COMPILER_AMD=hipcc
 
 CFLAGS_GNU=-std=c11 -march=$(ARCH) -fopenmp
-CFLAGS_NVCC=-arch=$(ARCH) -DGPU -x cu -DSHMEM=$(SHMEM)
+CFLAGS_NVIDIA=-gpu=$(ARCH) $(OPTS) -DCUDA -cuda -DSHMEM=$(SHMEM)
+CFLAGS_AMD=-DHIP $(HIPOPTS) -DSHMEM=$(SHMEM)
 
 ifeq (USM,$(MODEL))
 	COMPILER_INTEL=icpx
@@ -29,8 +29,8 @@ HEADERS = $(wildcard *.h)
 
 default: triad
 
-triad: cachebw.c $(HEADERS)
-	$(CC) $(CFLAGS) cachebw.c -o cachebw
+triad: cachebw.cpp $(HEADERS)
+	$(CC) $(CFLAGS) cachebw.cpp -o cachebw
 
 clean:
 	-rm -rf cachebw

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "triad.h"
+#include "triad.hpp"
 
 int main(int argc, char** argv)
 {
