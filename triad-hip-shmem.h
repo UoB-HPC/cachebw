@@ -31,11 +31,11 @@ __global__ void triad_kernel(double* d_a, double* d_b, double* d_c, size_t n,
   }
   long long int c1 = clock64();
 
-  double seconds = (((double)(c1 - c0))/freq)/1e9;
-  double avg_seconds = seconds/nreps;
-  double data_size = (double)n * 4.0 * sizeof(double)/1e9;
+  double clocks = (double)(c1 - c0);
+  double avg_clocks = clocks / nreps;
+  double data_size = (double)n * 4.0 * sizeof(double);
 
-  if (tid == 0) bw[blockIdx.x] = data_size / avg_seconds;
+  if (tid == 0) bw[blockIdx.x] = data_size / avg_clocks;
 }
 
 double cache_triad(size_t n, size_t nreps)
