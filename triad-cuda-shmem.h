@@ -47,8 +47,6 @@ double cache_triad(size_t n, size_t nreps)
   int num_blks = prop.multiProcessorCount * 4;
   int blk_sz = 128;
 
-  if (4*n * 3 * sizeof(double) > prop.sharedMemPerBlock) return -1.0;
-
   double* a;
   double* b;
   double* c;
@@ -63,6 +61,9 @@ double cache_triad(size_t n, size_t nreps)
   CUDACHK(cudaMalloc((void**)&d_bw, sizeof(double) * num_blks));
 
   double freq = (double)prop.clockRate/1e6;
+
+  size_t maxDynamicSharedMemSize = prop.sharedMemPerBlockOptin - 1;
+  cudaFuncSetAttribute(triad_kernel, cudaFuncAttributeMaxDynamicSharedMemorySize, maxDynamicSharedMemSize);
 
   triad_kernel<<<num_blks, blk_sz, sizeof(double)*n*3>>>(a, b, c, n, nreps, d_bw, freq);
   CUDACHK(cudaGetLastError());
